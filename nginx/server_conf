@@ -1,0 +1,16 @@
+server{
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    ssl on;
+    ssl_certificate /etc/ssl/certs/localhost.crt;
+    ssl_certificate_key /etc/ssl/private/localhost.key;
+
+    server_name localhost;
+
+    root /var/www/html;
+
+    autoindex on;
+    index index.html;
+
+}
