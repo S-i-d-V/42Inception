@@ -1,0 +1,8 @@
+#Nginx : 
+docker build --pull --rm -f "srcs/nginx/Dockerfile" -t 42nginx:latest "srcs/nginx"
+docker run -d -i -p 443:443/tcp --name nginxtest 42nginx:latest
+docker exec -it nginxtest bash
+
+#Wordpress :
+
+#MariaDB :
