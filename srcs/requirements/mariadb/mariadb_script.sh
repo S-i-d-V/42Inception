@@ -1,2 +1,2 @@
 #!/bin/bash
-ls
+mkdir -p /var/lib/mysql

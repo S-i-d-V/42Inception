@@ -31,9 +31,11 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - wordpress:/var/www
+      - wordpress:/var/www/wordpress
     networks:
       - back-network
+    depends_on:
+      - mariadb
     restart: on-failure
 
   #MARIADB CONTAINER
@@ -43,6 +45,8 @@ services:
     image: mariadb
     ports:
       - "3306:3306"
+    volumes:
+      - mariadb:/var/lib/mariadb
     networks:
       - back-network
     restart: on-failure
