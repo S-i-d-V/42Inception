@@ -1,0 +1,65 @@
+version: "3.9"
+#ISOLATED SERVICES
+services:
+
+  #NGINX CONTAINER
+  nginx:
+    #define the container name
+    container_name: nginx
+    #Path to the Dockerfile
+    build: ./requirements/nginx
+    #Image specify the name of the image built when combined with build
+    image: nginx
+    #SSL ports mapping
+    ports:
+      - "443:443"
+    #Nginx and wordpress use the same volume to stock website files
+    volumes:
+      - wordpress:/var/www
+    #Nginx is the only entrypoint, so the client communicate with nginx which communicate with others services
+    networks:
+      - front-network
+      - back-network
+    #Restart the container in case of crash
+    restart: on-failure
+
+  #WORDPRESS CONTAINER
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    image: wordpress
+    ports:
+      - "9000:9000"
+    volumes:
+      - wordpress:/var/www
+    networks:
+      - back-network
+    restart: on-failure
+
+  #MARIADB CONTAINER
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    image: mariadb
+    ports:
+      - "3306:3306"
+    networks:
+      - back-network
+    restart: on-failure
+
+#VOLUMES
+volumes:
+  #VOLUME THAT CONTAIN WORDPRESS WEBSITE FILES
+  wordpress:
+
+  #VOMUME THAT CONTAIN WORDPRESS DATABASE
+  mariadb:
+
+#DOCKER-NETWORK
+networks:
+  #NGINX IS THE ONLY ENTRYPOINT, SO HE GOT HIS OWN NETWORK
+  front-network:
+    driver: bridge
+  #NGINX NEED TO COMMUNICATE WITH THE OTHERS SERVICE SO HE SHARE A NETWORK WITH THEM
+  back-network:
+    driver: bridge
