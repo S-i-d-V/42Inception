@@ -29,7 +29,7 @@ ifeq (${VOLUMES}, 0)
 	@echo "${RED}No volume to removed.${CLEAR}"
 else
 	@docker volume rm $(shell docker volume ls -q)
-	@rm -rf ~/data/wp ~/data/db
+	@sudo rm -rf ~/data/wp ~/data/db
 	@echo "${RED}${VOLUMES} volumes removed. ${CLEAR}"
 endif
 
