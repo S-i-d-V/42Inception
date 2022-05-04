@@ -31,7 +31,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - wordpress:/var/www/wordpress
+      - wordpress:/var/www/
     networks:
       - back-network
     depends_on:
@@ -46,7 +46,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mariadb:/var/lib/mariadb
+      - mariadb:/var/lib/mysql
     networks:
       - back-network
     restart: on-failure
@@ -58,7 +58,7 @@ volumes:
     driver_opts:
       type: none
       #Volume path on the host
-      device: "${HOME}/data/wp"
+      device: "/home/user42/data/wp"
       #Mount a directory to the container from the host machine
       o: bind
 
@@ -67,7 +67,7 @@ volumes:
   mariadb:
     driver_opts:
       type: none
-      device: "${HOME}/data/db"
+      device: "/home/user42/data/db"
       o: bind
 
 #DOCKER-NETWORK
