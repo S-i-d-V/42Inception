@@ -2,11 +2,12 @@ FROM debian:buster
 EXPOSE 9000
 
 #GET REQUIRED PACKAGES
-RUN apt update && apt install -y php php-fpm
+RUN apt update && apt install -y wget php php-fpm
 
 #COPY DEPENDENCIES
-COPY wordpress-5.9.3-fr_FR.tar.gz /tmp
-COPY wordpress_script.sh /tmp/
+COPY tools/wordpress_script.sh /tmp/
 
-#SETUP NGINX
-RUN bash tmp/wordpress_script.sh && rm -rf wordpress_script.sh
+#SETUP WORDPRESS
+RUN bash tmp/wordpress_script.sh && rm -rf tmp/wordpress_script.sh
+
+CMD ["tail", "-f"]

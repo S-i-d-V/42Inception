@@ -6,10 +6,9 @@ EXPOSE 3306
 RUN apt update && apt install -y mariadb-server
 
 #COPY DEPENDENCIES
-COPY mariadb_script.sh  /tmp
+COPY tools/mariadb_script.sh  /tmp
 
 #SETUP MYSQEL
 RUN bash /tmp/mariadb_script.sh && rm -rf /tmp/mariadb_script.sh
 
-#START MYSQL
-ENTRYPOINT ["mysqld"]
+CMD ["tail", "-f"]

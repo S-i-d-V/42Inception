@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.3"
 #ISOLATED SERVICES
 services:
 
@@ -55,9 +55,20 @@ services:
 volumes:
   #VOLUME THAT CONTAIN WORDPRESS WEBSITE FILES
   wordpress:
+    driver_opts:
+      type: none
+      #Volume path on the host
+      device: "${HOME}/data/wp"
+      #Mount a directory to the container from the host machine
+      o: bind
+
 
   #VOMUME THAT CONTAIN WORDPRESS DATABASE
   mariadb:
+    driver_opts:
+      type: none
+      device: "${HOME}/data/db"
+      o: bind
 
 #DOCKER-NETWORK
 networks:

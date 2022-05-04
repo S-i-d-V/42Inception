@@ -4,6 +4,7 @@ https://docs.docker.com/compose/compose-file/compose-file-v3/#compose-file-struc
 - Docker volumes 
 https://docs.docker.com/storage/volumes/
 https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
+https://docs.docker.com/compose/compose-file/compose-file-v3/#volume-configuration-reference
 - Docker Networks
 https://w3blog.fr/2016/09/20/docker-et-ses-networks/
 - Restart container on failure
