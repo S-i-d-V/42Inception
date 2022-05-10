@@ -1,13 +1,11 @@
 version: "3.3"
-#ISOLATED SERVICES
 services:
-
   #NGINX CONTAINER
   nginx:
     #define the container name
     container_name: nginx
     #Path to the Dockerfile
-    build: ./requirements/nginx
+    build: ./sources/nginx/
     #Image specify the name of the image built when combined with build
     image: nginx
     #SSL ports mapping
@@ -15,66 +13,61 @@ services:
       - "443:443"
     #Nginx and wordpress use the same volume to stock website files
     volumes:
-      - wordpress:/var/www
+      - wordpress:/var/www/
     #Nginx is the only entrypoint, so the client communicate with nginx which communicate with others services
     networks:
-      - front-network
       - back-network
-    #Restart the container in case of crash
-    restart: on-failure
-
-  #WORDPRESS CONTAINER
-  wordpress:
-    container_name: wordpress
-    build: ./requirements/wordpress
-    image: wordpress
-    ports:
-      - "9000:9000"
-    volumes:
-      - wordpress:/var/www/
-    networks:
-      - back-network
-    depends_on:
-      - mariadb
+    #Import environnement variable from .env
+    env_file:
+      - sources/.env
+    #The container restart on failure
     restart: on-failure
 
   #MARIADB CONTAINER
   mariadb:
     container_name: mariadb
-    build: ./requirements/mariadb
+    build: ./sources/mariadb/
     image: mariadb
-    ports:
-      - "3306:3306"
     volumes:
       - mariadb:/var/lib/mysql
     networks:
       - back-network
+    env_file:
+      - sources/.env
     restart: on-failure
 
-#VOLUMES
-volumes:
-  #VOLUME THAT CONTAIN WORDPRESS WEBSITE FILES
+  #WORDPRESS CONTAINER
   wordpress:
-    driver_opts:
-      type: none
-      #Volume path on the host
-      device: "/home/user42/data/wp"
-      #Mount a directory to the container from the host machine
-      o: bind
+    container_name: wordpress
+    build: ./sources/wordpress/
+    image: wordpress
+    volumes:
+      - wordpress:/var/www/
+    depends_on:
+      - mariadb
+    networks:
+      - back-network
+    env_file:
+      - sources/.env
+    restart: on-failure
 
-
-  #VOMUME THAT CONTAIN WORDPRESS DATABASE
+volumes:
+  #VOMUME THAT CONTAIN MARIADB DATABASE
   mariadb:
     driver_opts:
       type: none
-      device: "/home/user42/data/db"
+      device: /home/user42/data/mariadb/
+      o: bind
+
+  #VOMUME THAT CONTAIN WORDPRESS DATABASE
+  wordpress:
+    driver_opts:
+      type: none
+      device: /home/user42/data/wordpress/
       o: bind
 
 #DOCKER-NETWORK
 networks:
-  #NGINX IS THE ONLY ENTRYPOINT, SO HE GOT HIS OWN NETWORK
-  front-network:
-    driver: bridge
   #NGINX NEED TO COMMUNICATE WITH THE OTHERS SERVICE SO HE SHARE A NETWORK WITH THEM
   back-network:
     driver: bridge

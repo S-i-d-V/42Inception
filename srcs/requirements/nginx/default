@@ -2,8 +2,10 @@ server{
     listen 443 ssl;
     listen [::]:443 ssl;
 
-    server_name nginx;
+    server_name inception42;
     root /var/www/wordpress;
+
+    index index.php;
 
     ssl on;
     ssl_protocols TLSv1.2 TLSv1.3;

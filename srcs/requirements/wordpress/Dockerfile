@@ -1,12 +1,12 @@
 FROM debian:buster
-EXPOSE 9000
+#EXPOSE 9000
 
 #GET REQUIRED PACKAGES
-RUN apt update && apt install -y wget php php-fpm php-mysql
+RUN apt update && apt install -y wget php php-fpm php-mysql curl
 
 #COPY DEPENDENCIES
-COPY wp-config.php /tmp
-COPY www.conf /tmp
 COPY tools/wordpress_script.sh /tmp
 
-CMD ["bash", "/tmp/wordpress_script.sh"]
+#SETUP AND START THE SERVICE
+ENTRYPOINT ["bash", "/tmp/wordpress_script.sh"]
+CMD ["php-fpm7", "--nodaemonize"]

@@ -1,15 +1,16 @@
+#I use Debian as OS
 FROM debian:buster
-EXPOSE 443
 
-#GET REQUIRED PACKAGES
-RUN apt update && apt install -y nginx openssl
+#Install required packages
+RUN     apt update && apt install -y nginx openssl
 
-#COPY DEPENDENCIES
-COPY server_conf /etc/nginx/sites-available/
-COPY tools/nginx_script.sh /tmp
+#Erase default config and brind mine
+RUN     rm -rf /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
+COPY    default /etc/nginx/sites-available/
+RUN     ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+#Generate SSL key and certif
+RUN     openssl req -newkey rsa:2048 -nodes -keyout /etc/ssl/private/ssl_certificate_key.key \
+        -x509 -days 365 -out /etc/ssl/certs/ssl_certificate.crt  -subj '/CN=ugtheven.42.fr'
 
-#SETUP NGINX
-RUN bash tmp/nginx_script.sh && rm -rf tmp/nginx_script.sh
-
-#START NGINX ON THE FRONT END
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+#Start nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]
