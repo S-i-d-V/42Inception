@@ -12,9 +12,14 @@ server{
     ssl_certificate /etc/ssl/certs/ssl_certificate.crt;
     ssl_certificate_key /etc/ssl/private/ssl_certificate_key.key;
 
+    access_log /dev/stdout;
+	error_log /dev/stderr;
+
     location ~ \.php$ {
 		fastcgi_pass wordpress:9000;
-        include fastcgi_params;
+		include fastcgi_params;
+		include snippets/fastcgi-php.conf;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		fastcgi_param PATH_INFO $fastcgi_path_info;
 	}
 }

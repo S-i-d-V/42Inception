@@ -5,7 +5,7 @@ services:
     #define the container name
     container_name: nginx
     #Path to the Dockerfile
-    build: ./sources/nginx/
+    build: ./requirements/nginx/
     #Image specify the name of the image built when combined with build
     image: nginx
     #SSL ports mapping
@@ -19,27 +19,27 @@ services:
       - back-network
     #Import environnement variable from .env
     env_file:
-      - sources/.env
+      - .env
     #The container restart on failure
     restart: on-failure
 
   #MARIADB CONTAINER
   mariadb:
     container_name: mariadb
-    build: ./sources/mariadb/
+    build: ./requirements/mariadb/
     image: mariadb
     volumes:
       - mariadb:/var/lib/mysql
     networks:
       - back-network
     env_file:
-      - sources/.env
+      - .env
     restart: on-failure
 
   #WORDPRESS CONTAINER
   wordpress:
     container_name: wordpress
-    build: ./sources/wordpress/
+    build: ./requirements/wordpress/
     image: wordpress
     volumes:
       - wordpress:/var/www/
@@ -48,7 +48,7 @@ services:
     networks:
       - back-network
     env_file:
-      - sources/.env
+      - .env
     restart: on-failure
 
 volumes:

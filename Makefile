@@ -15,7 +15,7 @@ CLEAR =`tput sgr0`
 all: compose-up
 
 compose-up:
-	@mkdir -p ~/data/wp ~/data/db
+	@mkdir -p ~/data/wordpress ~/data/mariadb
 	@docker-compose -f srcs/docker-compose.yml up -d --build
 	@echo "${GREEN}Server ready to use. ${CLEAR}"
 
@@ -29,7 +29,7 @@ ifeq (${VOLUMES}, 0)
 	@echo "${RED}No volume to removed.${CLEAR}"
 else
 	@docker volume rm $(shell docker volume ls -q)
-	@rm -rf ~/data/wp ~/data/db
+	@rm -rf ~/data/wordpress ~/data/mariadb
 	@echo "${RED}${VOLUMES} volumes removed. ${CLEAR}"
 endif
 
