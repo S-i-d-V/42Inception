@@ -5,8 +5,10 @@ rm -rf /etc/mysql/mariadb.conf.d/50-server.cnf && mv /tmp/50-server.cnf /etc/mys
 
 #I will set my db depending on the env variable (for name, user etc...)
 sed -i "s/MYSQL_DATABASE/$MYSQL_DATABASE/g" /tmp/setup_db.sql
-sed -i "s/MYSQL_USER/$MYSQL_USER/g" /tmp/setup_db.sql
-sed -i "s/MYSQL_PASSWORD/$MYSQL_PASSWORD/g" /tmp/setup_db.sql
+sed -i "s/MYSQL_SUPER_USER/$MYSQL_SUPER_USER/g" /tmp/setup_db.sql
+sed -i "s/MYSQL_SUPER_PASSWORD/$MYSQL_SUPER_PASSWORD/g" /tmp/setup_db.sql
+sed -i "s/MYSQL_LAMBDA_USER/$MYSQL_LAMBDA_USER/g" /tmp/setup_db.sql
+sed -i "s/MYSQL_LAMBDA_PASSWORD/$MYSQL_LAMBDA_PASSWORD/g" /tmp/setup_db.sql
 
 #I start the mysql service and inject my sql script
 service mysql start 

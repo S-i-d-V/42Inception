@@ -19,8 +19,3 @@
 - Wordpress :
     - 
 
-#MYSQL LOGS
-    - wp_super
-    - 123456
-
-#WORDPRESS LOGS

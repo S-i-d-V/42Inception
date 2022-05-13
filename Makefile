@@ -32,8 +32,6 @@ else
 	@rm -rf ~/data/wordpress ~/data/mariadb
 	@echo "${RED}${VOLUMES} volumes removed. ${CLEAR}"
 endif
-
-fclean: clean
 	@docker image prune -af
 	@echo "${RED}Images removed. ${CLEAR}"
 

@@ -4,9 +4,11 @@ FROM    debian:buster
 #Install required packages
 RUN     apt update && apt install -y nginx openssl
 
-#Copy needed files from host to the container
-COPY    conf/default /etc/nginx/sites-enabled/default
-#RUN     sed -i "s/DOMAIN_NAME/$DOMAIN_NAME/g" /etc/nginx/sites-enabled/default
+#Erase the nginx default config to put my own
+COPY    conf/inception.conf /etc/nginx/sites-available/
+RUN     sed -i "s/DOMAIN_NAME/$DOMAIN_NAME/g" /etc/nginx/sites-available/inception.conf
+RUN     rm -rf /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
+RUN     ln -s /etc/nginx/sites-available/inception.conf /etc/nginx/sites-enabled/
 
 #Setup the ssl keys for nginx
 RUN     openssl req -newkey rsa:2048 -nodes -keyout /etc/ssl/private/ssl_certificate_key.key \

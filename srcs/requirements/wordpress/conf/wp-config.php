@@ -25,10 +25,10 @@
 define( 'DB_NAME', 'MYSQL_DATABASE' );
 
 /** Utilisateur de la base de données MySQL. */
-define( 'DB_USER', 'MYSQL_USER' );
+define( 'DB_USER', 'MYSQL_SUPER_USER' );
 
 /** Mot de passe de la base de données MySQL. */
-define( 'DB_PASSWORD', 'MYSQL_PASSWORD' );
+define( 'DB_PASSWORD', 'MYSQL_SUPER_PASSWORD' );
 
 /** Adresse de l’hébergement MySQL. */
 define( 'DB_HOST', 'mariadb' );
