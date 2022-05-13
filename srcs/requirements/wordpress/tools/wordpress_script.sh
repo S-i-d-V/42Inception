@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Install wordpress and change the default config by mine
-unzip latest-fr_FR.zip -d /var/www/
+unzip wordpress-5.9.1-fr_FR.zip -d /var/www/
 sed -i "s/MYSQL_DATABASE/$MYSQL_DATABASE/g" /tmp/wp-config.php
 sed -i "s/MYSQL_USER/$MYSQL_USER/g" /tmp/wp-config.php
 sed -i "s/MYSQL_PASSWORD/$MYSQL_PASSWORD/g" /tmp/wp-config.php
