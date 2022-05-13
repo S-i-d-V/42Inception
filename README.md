@@ -6,8 +6,9 @@
 - ### Re-build the server :
     `sudo make re`
 
-# How access to the wordpress :
-`https://localhost`
+# Access :
+- ### URL :
+    `https://localhost`
 
 # Usefull sources :
 - ## Docker/Docker compose:
