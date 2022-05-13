@@ -3,6 +3,11 @@
 #I erase the orinal mariadb config to put my own
 rm -rf /etc/mysql/mariadb.conf.d/50-server.cnf && mv /tmp/50-server.cnf /etc/mysql/mariadb.conf.d/
 
+#I will set my db depending on the env variable (for name, user etc...)
+sed -i "s/MYSQL_DATABASE/$MYSQL_DATABASE/g" /tmp/setup_db.sql
+sed -i "s/MYSQL_USER/$MYSQL_USER/g" /tmp/setup_db.sql
+sed -i "s/MYSQL_PASSWORD/$MYSQL_PASSWORD/g" /tmp/setup_db.sql
+
 #I start the mysql service and inject my sql script
 service mysql start 
 mysql < tmp/setup_db.sql

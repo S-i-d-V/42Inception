@@ -6,6 +6,7 @@ RUN     apt update && apt install -y nginx openssl
 
 #Copy needed files from host to the container
 COPY    conf/default /etc/nginx/sites-enabled/default
+#RUN     sed -i "s/DOMAIN_NAME/$DOMAIN_NAME/g" /etc/nginx/sites-enabled/default
 
 #Setup the ssl keys for nginx
 RUN     openssl req -newkey rsa:2048 -nodes -keyout /etc/ssl/private/ssl_certificate_key.key \
