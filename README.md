@@ -1,13 +1,13 @@
 # Makefile rules :
-- ## Build the server :
-    > `sudo make | sudo make compose-up`
-- ## Clear the server :
-    > `sudo make clean`
-- ## Re-build the server :
-    > `sudo make re`
+- ### Build the server :
+    `sudo make | sudo make compose-up`
+- ### Clear the server :
+    `sudo make clean`
+- ### Re-build the server :
+    `sudo make re`
 
 # How access to the wordpress :
-> URL `https://localhost`
+`https://localhost`
 
 # Usefull sources :
 - ## Docker/Docker compose:
