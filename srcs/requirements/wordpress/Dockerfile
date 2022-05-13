@@ -1,13 +1,17 @@
+#BUILD FROM DEBIAN:BUSTER
 FROM debian:buster
-#EXPOSE 9000
 
-#GET REQUIRED PACKAGES
-RUN apt update && apt install -y wget php php-fpm php-mysql curl
+#Install required packages
+RUN apt update && apt install -y wget unzip php php-fpm php-mysql
+RUN wget https://fr.wordpress.org/latest-fr_FR.zip
 
-#COPY DEPENDENCIES
+#Copy needed files from host to the container
 COPY tools/wordpress_script.sh /tmp
-COPY wp-config.php /tmp
+COPY conf/wp-config.php /tmp
+COPY conf/www.conf /tmp
 
-#SETUP AND START THE SERVICE
+#Setup the wordpress config
 ENTRYPOINT ["bash", "/tmp/wordpress_script.sh"]
-CMD ["php-fpm7", "--nodaemonize"]
+
+#Start php-fpm in the foreground
+CMD ["php-fpm7.3", "-F"]

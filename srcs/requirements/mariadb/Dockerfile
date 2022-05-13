@@ -2,15 +2,14 @@
 FROM debian:buster
 
 #Install required packages
-RUN     apt update && apt install -y mariadb-server mariadb-client
+RUN apt update && apt install -y mariadb-server
 
-RUN     mkdir -p /var/run/
-
-#Bring the setup script to the container
-COPY tools/mariadb_script.sh  /tmp
+#Copy needed files from host to the container
+COPY tools/mariadb_script.sh /tmp
+COPY conf/50-server.cnf /tmp
 
 #Setup the db
-ENTRYPOINT [ "bash", "tmp/mariadb_script.sh" ]
+ENTRYPOINT ["bash", "/tmp/mariadb_script.sh"]
 
-#Start the service
-CMD [ "mysqld_safe" ]
+#Start mariadb in the foreground
+CMD ["mysqld_safe"]

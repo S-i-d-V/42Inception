@@ -31,7 +31,7 @@ define( 'DB_USER', 'wp_super' );
 define( 'DB_PASSWORD', '123456' );
 
 /** Adresse de l’hébergement MySQL. */
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', 'mariadb' );
 
 /** Jeu de caractères à utiliser par la base de données lors de la création des tables. */
 define( 'DB_CHARSET', 'utf8' );

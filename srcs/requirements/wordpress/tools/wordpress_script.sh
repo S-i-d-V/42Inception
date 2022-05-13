@@ -1,23 +1,14 @@
 #!/bin/bash
 
-mkdir -p var/www/
-mkdir -p run/php
+date -u
 
-#Install wordpress
-#if [! -f "/var/www/wordpress"]; then
-    wget https://fr.wordpress.org/latest-fr_FR.tar.gz -P /var/www
-    tar xfC /var/www/latest-fr_FR.tar.gz /var/www/
-    rm -rf /var/www/latest-fr_FR.tar.gz
-    mv /tmp/wp-config.php /var/www/wordpress
-#fi
+mkdir -p /run/php
 
-#Install wp-cli
-#wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-#chmod +x wp-cli.phar
-#sudo mv wp-cli.phar /usr/local/bin/wp
+unzip latest-fr_FR.zip
+mv index.php wordpress/
+mv wordpress /var/www/
+mv /tmp/wp-config.php /var/www/wordpress/
 
-
-#Start php fpm
-php-fpm7.3
+rm -rf /etc/php/7.3/fpm/pool.d/www.conf && mv /tmp/www.conf /etc/php/7.3/fpm/pool.d/
 
 exec "$@"

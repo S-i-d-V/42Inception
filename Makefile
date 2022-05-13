@@ -37,4 +37,4 @@ fclean: clean
 	@docker image prune -af
 	@echo "${RED}Images removed. ${CLEAR}"
 
-re: fclean compose-up
+re: clean compose-up
