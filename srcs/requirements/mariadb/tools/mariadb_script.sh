@@ -1,14 +1,13 @@
 #!/bin/bash
 
+#I erase the orinal mariadb config to put my own
 rm -rf /etc/mysql/mariadb.conf.d/50-server.cnf && mv /tmp/50-server.cnf /etc/mysql/mariadb.conf.d/
 
+#I start the mysql service and inject my sql script
 service mysql start 
+mysql < tmp/setup_db.sql
 
-mysql -u root -e "CREATE DATABASE wp_db;"
-mysql -u root -e "CREATE USER 'wp_super'@'localhost' IDENTIFIED BY '123456';"
-mysql -u root -e "GRANT ALL PRIVILEGES ON * . * TO 'wp_super'@'localhost';"
-mysql -u root -e "FLUSH PRIVILEGES;"
-
+#I stop mysql to load modif and it will start when CMD is executed
 service mysql stop
 
 exec "$@"
