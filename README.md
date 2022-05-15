@@ -5,6 +5,12 @@
     `sudo make clean`
 - ### Re-build the server :
     `sudo make re`
+- ### Start the server :
+    `sudo make start`
+- ### Stop the server :
+    `sudo make stop`
+- ### Restart the server :
+    `sudo make restart`
 
 # Access :
 - ### URL :

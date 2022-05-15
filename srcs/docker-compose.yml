@@ -56,14 +56,14 @@ volumes:
   mariadb:
     driver_opts:
       type: none
-      device: /home/user42/data/mariadb/
+      device: ${HOME}/data/mariadb/
       o: bind
 
   #VOMUME THAT CONTAIN WORDPRESS DATABASE
   wordpress:
     driver_opts:
       type: none
-      device: /home/user42/data/wordpress/
+      device: ${HOME}/data/wordpress/
       o: bind
 
 #DOCKER-NETWORK
