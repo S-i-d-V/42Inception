@@ -8,7 +8,10 @@
 
 # Access :
 - ### URL :
-    `https://localhost`
+    `https://ugtheven.42.fr`
+- ### WordPress admin logs :
+    > username: wp_super
+    > password: 123456
 
 # Usefull sources :
 - ## Docker/Docker compose:
@@ -30,11 +33,12 @@
     
 
 - ## MariaDB :
-    - https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10
+    - ### Installation / Configuration :
+        - https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10
+    - ### Make a SQL dump :
+        - https://www.bg-coding.fr/fr/developpement/bases-de-donnees/sql/faire-un-dump-de-sa-base-de-donnees-mysql-ou-mariadb
 
 - ## Wordpress :
     - ### Installation / Configuration :
         - https://www.hostinger.fr/tutoriels/wp-cli#Etape_3_-_Utilisation_de_WP-CLI_pour_installer_WordPress
-        - https://developer.wordpress.org/cli/commands/config/create/
-        - https://developer.wordpress.org/cli/commands/core/install/
 
