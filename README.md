@@ -1,23 +1,22 @@
 # Makefile rules :
 - ### Build the server :
-    `sudo make | sudo make compose-up`
+    > sudo make || sudo make compose-up
 - ### Clear the server :
-    `sudo make clean`
+    > sudo make clean
 - ### Re-build the server :
-    `sudo make re`
+    > sudo make re
 - ### Start the server :
-    `sudo make start`
+    > sudo make start
 - ### Stop the server :
-    `sudo make stop`
+    > sudo make stop
 - ### Restart the server :
-    `sudo make restart`
+    > sudo make restart
 
 # Access :
 - ### URL :
-    `https://ugtheven.42.fr`
+    > https://ugtheven.42.fr
 - ### WordPress admin logs :
-    > username: wp_super
-    > password: 123456
+    > username: wp_super | password: 123456
 
 # Usefull sources :
 - ## Docker/Docker compose:
