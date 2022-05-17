@@ -33,8 +33,6 @@ else
 	@rm -rf ${HOMEPATH}/data/wordpress ${HOMEPATH}/data/mariadb
 	@echo "${RED}${VOLUMES} volumes removed. ${CLEAR}"
 endif
-	@docker image prune -af
-	@echo "${RED}Images removed. ${CLEAR}"
 
 start:
 	@docker-compose -f srcs/docker-compose.yml start
